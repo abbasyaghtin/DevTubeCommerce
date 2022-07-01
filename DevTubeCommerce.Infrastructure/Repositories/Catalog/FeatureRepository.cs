@@ -1,11 +1,7 @@
 ﻿using DevTubeCommerce.Domain.Core.Catalogs.Features;
 using DevTubeCommerce.Infrastructure.Base;
 using DevTubeCommerce.Infrastructure.Database.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevTubeCommerce.Infrastructure.Repositories.Catalog
 {
@@ -18,9 +14,19 @@ namespace DevTubeCommerce.Infrastructure.Repositories.Catalog
             this.context = context;
         }
 
+        public async Task<List<Feature>> GetFeaturesAsync(CancellationToken cancellationToken = default)
+        {
+            return await context.Features.ToListAsync(cancellationToken);
+        }
+
         public async Task<Feature> GetById(FeatureId featureId)
         {
             return await context.Features.FindAsync(featureId);
+        }
+
+        public async Task<Feature> GetByIdAsync(FeatureId featureId, CancellationToken cancellationToken = default)
+        {
+            return await context.Features.FindAsync(new object[] { featureId }, cancellationToken);
         }
 
         public async Task<FeatureId> Insert(Feature feature)
@@ -52,6 +58,7 @@ namespace DevTubeCommerce.Infrastructure.Repositories.Catalog
             context.Remove(feature);
             //call save changes from UnitOfWork
         }
+
 
     }
 }

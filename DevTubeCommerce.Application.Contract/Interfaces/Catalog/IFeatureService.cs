@@ -1,19 +1,14 @@
 ﻿using DevTubeCommerce.Application.Contract.Dto.Catalog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevTubeCommerce.Application.Contract.Interfaces.Catalog
 {
     public interface IFeatureService
     {
-        Task<List<FeatureDto>> GetAll();
-        Task<FeatureDto> GetById(Guid id);
-        Task Add(FeatureDto model);
+        Task<List<FeatureDto>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<FeatureDto> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+        Task<Guid> AddAsync(FeatureDto model, CancellationToken cancellationToken = default);
         Task Edit(FeatureDto model);
-        Task Remove(Guid id);
-
+        Task EditAsync(Guid id, FeatureDto model, CancellationToken cancellationToken = default);
+        Task RemoveAsync(Guid id, CancellationToken cancellationToken = default);
     }
 }

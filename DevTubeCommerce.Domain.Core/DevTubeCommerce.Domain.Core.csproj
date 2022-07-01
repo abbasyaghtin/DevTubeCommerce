@@ -13,4 +13,8 @@
     <Folder Include="Orders\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DevTubeCommerce.Framework\DevTubeCommerce.Framework.csproj" />
+  </ItemGroup>
+
 </Project>

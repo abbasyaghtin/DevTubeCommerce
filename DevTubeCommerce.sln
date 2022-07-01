@@ -26,7 +26,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevTubeCommerce.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevTubeCommerce.API", "DevTubeCommerce.API\DevTubeCommerce.API.csproj", "{3D6E7223-1DFF-4E99-83B1-09B6D1399865}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTubeCommerce.Application.Contract", "DevTubeCommerce.Application.Contract\DevTubeCommerce.Application.Contract.csproj", "{D0E58985-2BB6-47C6-A55A-C4400089889A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevTubeCommerce.Application.Contract", "DevTubeCommerce.Application.Contract\DevTubeCommerce.Application.Contract.csproj", "{D0E58985-2BB6-47C6-A55A-C4400089889A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Framework", "01_Framework", "{757B0F8B-A00B-47C3-9AC1-6B0642308FD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevTubeCommerce.Framework", "DevTubeCommerce.Framework\DevTubeCommerce.Framework.csproj", "{146AA72E-B643-4F13-9169-F37055DBE599}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +62,10 @@ Global
 		{D0E58985-2BB6-47C6-A55A-C4400089889A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D0E58985-2BB6-47C6-A55A-C4400089889A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D0E58985-2BB6-47C6-A55A-C4400089889A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{146AA72E-B643-4F13-9169-F37055DBE599}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{146AA72E-B643-4F13-9169-F37055DBE599}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{146AA72E-B643-4F13-9169-F37055DBE599}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{146AA72E-B643-4F13-9169-F37055DBE599}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +77,7 @@ Global
 		{4F41BC43-1626-4DE9-B10C-F3566675121A} = {66CED9A8-DBCC-4534-92C6-74A991F7CB01}
 		{3D6E7223-1DFF-4E99-83B1-09B6D1399865} = {5225391F-B32E-4B4D-92C5-615C0CF42041}
 		{D0E58985-2BB6-47C6-A55A-C4400089889A} = {66CED9A8-DBCC-4534-92C6-74A991F7CB01}
+		{146AA72E-B643-4F13-9169-F37055DBE599} = {757B0F8B-A00B-47C3-9AC1-6B0642308FD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CF60EDDC-B7A3-4FB2-9D95-B352B937B4D9}
