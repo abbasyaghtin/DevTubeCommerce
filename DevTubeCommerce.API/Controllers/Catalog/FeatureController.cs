@@ -37,7 +37,7 @@ namespace DevTubeCommerce.API.Controllers.Catalog
         {
             var features = await featureService.GetAllAsync(cancellationToken);
             var result = mapper.Map<List<FeatureModel>>(features);
-            return result != null ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
@@ -46,7 +46,7 @@ namespace DevTubeCommerce.API.Controllers.Catalog
         {
             var feature = await featureService.GetByIdAsync(id);
             var result = mapper.Map<FeatureModel>(feature);
-            return result != null ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
 
         [HttpPut("{id}/UpdateFeature")]

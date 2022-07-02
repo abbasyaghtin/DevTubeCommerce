@@ -16,6 +16,7 @@ namespace DevTubeCommerce.Application
         public static void AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IFeatureService, FeatureService>();
+            services.AddScoped<ICategoryService, CategoryService>();
         }
     }
 }

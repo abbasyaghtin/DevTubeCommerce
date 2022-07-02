@@ -47,7 +47,6 @@ namespace DevTubeCommerce.Application.Services.Catalog
             var featureId = new FeatureId(id);
             var feature = await featureRepository.GetByIdAsync(featureId, cancellationToken);
             if (feature == null)
-                //TODO : message of error ---> go to error class
                 throw new NotFoundException(Error.FeatureNotFound);
 
             feature.Update(model.Title, model.Description, model.SortOrder);
@@ -69,7 +68,7 @@ namespace DevTubeCommerce.Application.Services.Catalog
 
         public async Task<FeatureDto> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            var feature = await featureRepository.GetById(new FeatureId(id));
+            var feature = await featureRepository.GetByIdAsync(new FeatureId(id),cancellationToken);
             if (feature == null)
                 throw new NotFoundException(Error.FeatureNotFound);
             return new FeatureDto
@@ -79,6 +78,19 @@ namespace DevTubeCommerce.Application.Services.Catalog
                 Id = id,
                 SortOrder = feature.SortOrder,
             };
+        }
+
+        public async Task<List<FeatureDto>> GetByIdsAsync(List<Guid> ids, CancellationToken cancellationToken = default)
+        {
+            var featureIds=ids.Select(x=>new FeatureId(x)).ToList();
+            var features= await featureRepository.GetByIdsAsync(featureIds, cancellationToken);
+            return features.Select(x => new FeatureDto() 
+            {
+            Id=x.Id.Value,
+            Description=x.Description,
+            SortOrder=x.SortOrder,
+            Title=x.Title
+            }).ToList();
         }
 
         public async Task RemoveAsync(Guid id, CancellationToken cancellationToken = default)

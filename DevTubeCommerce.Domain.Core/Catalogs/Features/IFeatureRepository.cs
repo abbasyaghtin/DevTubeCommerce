@@ -8,5 +8,6 @@
         Task<Feature> GetByIdAsync(FeatureId featureId, CancellationToken cancellationToken = default);
         Task<List<Feature>> GetFeaturesAsync(CancellationToken cancellationToken = default);
         void Delete(FeatureId featureId);
+        Task<List<Feature>> GetByIdsAsync(List< FeatureId> featureIds, CancellationToken cancellationToken);
     }
 }

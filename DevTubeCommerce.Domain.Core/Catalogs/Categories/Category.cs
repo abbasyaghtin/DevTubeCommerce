@@ -16,11 +16,12 @@ namespace DevTubeCommerce.Domain.Core.Catalogs.Categories
 
         private readonly List<CategoryFeature> _categoryFeatures = new List<CategoryFeature>();
         public IReadOnlyList<CategoryFeature> CategoryFeatures => _categoryFeatures;
-       
-        
-        internal static Category CreateNew(string categoryName, bool isActive, string desscription, List<FeatureId> features)
+
+
+        public static Category CreateNew(string categoryName, bool isActive, string desscription, List<FeatureId> features)
         {
-            return new Category(categoryName, isActive, desscription, features);
+            var categoryId = new CategoryId(Guid.NewGuid());
+            return new Category(categoryId, categoryName, isActive, desscription, features);
         }
 
         private void BuildFeatures(List<FeatureId> featureData)
@@ -32,13 +33,36 @@ namespace DevTubeCommerce.Domain.Core.Catalogs.Categories
             });
         }
 
-        private Category(string categoryName, bool isActive, string desscription, List<FeatureId> features)
+        private void RemoveFeatures(List<FeatureId> featureData)
+        {
+            var categoryFeatures = _categoryFeatures.Where(x => featureData.Contains(x.FeatureId)).ToList();
+            categoryFeatures.ForEach(categoryFeature =>
+            {
+                _categoryFeatures.Remove(categoryFeature);
+            });
+        }
+
+        private Category(CategoryId id, string categoryName, bool isActive, string desscription, List<FeatureId> features)
         {
             //validation....
+            Id = id;
             CategoryName = categoryName;
             IsActive = isActive;
             Description = desscription;
             BuildFeatures(features);
+        }
+
+        public void Update(CategoryId id, string categoryName, bool isActive, string desscription, List<FeatureId> oldFeatureIds, List<FeatureId> CurrentfeatureIds)
+        {
+            //validation
+            Id = id;
+            CategoryName = categoryName;
+            IsActive = isActive;
+            Description = desscription;
+            if (oldFeatureIds.Count > 0)
+                RemoveFeatures(oldFeatureIds);
+
+            BuildFeatures(CurrentfeatureIds);
         }
 
         private Category()

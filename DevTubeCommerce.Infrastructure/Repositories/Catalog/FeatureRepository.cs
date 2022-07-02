@@ -59,6 +59,9 @@ namespace DevTubeCommerce.Infrastructure.Repositories.Catalog
             //call save changes from UnitOfWork
         }
 
-
+        public async Task<List<Feature>> GetByIdsAsync(List<FeatureId> featureIds, CancellationToken cancellationToken)
+        {
+            return await context.Features.Where(x => featureIds.Contains(x.Id)).ToListAsync(cancellationToken);
+        }
     }
 }

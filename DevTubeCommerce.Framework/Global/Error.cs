@@ -38,15 +38,21 @@ namespace DevTubeCommerce.Framework.Global
         };
         public static readonly Error InvalidPrice = new Error()
         {
-            Id = 4,
+            Id = 5,
             EnglishTitle = "Invalid Price!",
             PersianTitle = "قیمت نامعتبر می باشد.",
         };
         public static readonly Error FeatureNotFound = new Error()
         {
-            Id = 4,
+            Id = 6,
             EnglishTitle = "Feature Not Found!",
             PersianTitle = "ویژگی مورد نظر یافت نشد.",
+        };
+        public static readonly Error CategoryNotFound = new Error()
+        {
+            Id = 7,
+            EnglishTitle = "Category Not Found!",
+            PersianTitle = "کاتالوگ مورد نظر یافت نشد.",
         };
     }
 }
