@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevTubeCommerce.Application.QueryHandlers
+namespace DevTubeCommerce.Application.QueryHandlers.Products
 {
     public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, GetProductQueryResponse>
     {
@@ -30,10 +30,10 @@ namespace DevTubeCommerce.Application.QueryHandlers
                 Price = product.Price,
                 Title = product.Title,
             };
-            queryResponse.ProductFeatures= product.ProductFeatureValues.Select(x => new ProductFeatureDto() 
+            queryResponse.ProductFeatures = product.ProductFeatureValues.Select(x => new ProductFeatureDto()
             {
-            FeatureId=x.FeatureId.Value,
-            Value=x.Value,
+                FeatureId = x.FeatureId.Value,
+                Value = x.Value,
             }).ToList();
             return queryResponse;
         }

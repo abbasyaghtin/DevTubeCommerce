@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevTubeCommerce.Application.QueryHandlers
+namespace DevTubeCommerce.Application.QueryHandlers.Products
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, List<GetProductQueryResponse>>
     {
@@ -22,7 +22,7 @@ namespace DevTubeCommerce.Application.QueryHandlers
         public async Task<List<GetProductQueryResponse>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
             var products = await productRepository.GetAllAsync(cancellationToken);
-           return products.Select(x => new GetProductQueryResponse()
+            return products.Select(x => new GetProductQueryResponse()
             {
                 Code = x.Code,
                 Description = x.Description,
