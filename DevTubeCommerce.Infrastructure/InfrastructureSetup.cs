@@ -1,5 +1,6 @@
 ﻿using DevTubeCommerce.Domain.Core.Catalogs.Categories;
 using DevTubeCommerce.Domain.Core.Catalogs.Features;
+using DevTubeCommerce.Domain.Core.Catalogs.Products;
 using DevTubeCommerce.Infrastructure.Patterns;
 using DevTubeCommerce.Infrastructure.Repositories.Catalog;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace DevTubeCommerce.Infrastructure
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IFeatureRepository, FeatureRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
         }
     }
 }

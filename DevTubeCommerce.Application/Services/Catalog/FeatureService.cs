@@ -27,7 +27,7 @@ namespace DevTubeCommerce.Application.Services.Catalog
         {
             var feature = Feature.CreateNew(model.Title, model.Description, model.SortOrder);
             await featureRepository.Insert(feature);
-            await unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync();
 
             return feature.Id.Value;
             //insert to db
@@ -39,7 +39,7 @@ namespace DevTubeCommerce.Application.Services.Catalog
         {
             var feature = Feature.CreateNewForUpdate(model.Id, model.Title, model.Description, model.SortOrder);
             await featureRepository.Update(feature);
-            await unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync();
         }
 
         public async Task EditAsync(Guid id, FeatureDto model, CancellationToken cancellationToken = default)
@@ -51,7 +51,7 @@ namespace DevTubeCommerce.Application.Services.Catalog
 
             feature.Update(model.Title, model.Description, model.SortOrder);
             await featureRepository.Update(feature);
-            await unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync();
 
         }
 
@@ -96,7 +96,7 @@ namespace DevTubeCommerce.Application.Services.Catalog
         public async Task RemoveAsync(Guid id, CancellationToken cancellationToken = default)
         {
             featureRepository.Delete(new FeatureId(id));
-            await unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync();
         }
     }
 }

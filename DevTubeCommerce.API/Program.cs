@@ -2,6 +2,8 @@ using DevTubeCommerce.API.Configurations;
 using DevTubeCommerce.Application;
 using DevTubeCommerce.Framework.Extensions;
 using DevTubeCommerce.Infrastructure;
+using MediatR;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DevTubeCommerce.Framework.Exceptions;
+using DevTubeCommerce.Framework.Global;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +18,7 @@ namespace DevTubeCommerce.Domain.Core.Base
             private set
             {
                 if (value == Guid.Empty)
-                    throw new BusinessRuleException("A valid id must be provided.");
+                    throw new BusinessRuleException(Error.InvalidId);
 
                 _id = value;
             }

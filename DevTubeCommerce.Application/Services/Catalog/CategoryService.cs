@@ -34,7 +34,7 @@ namespace DevTubeCommerce.Application.Services.Catalog
             });
             var category = Category.CreateNew(categoryDto.CategoryName, categoryDto.IsActive, categoryDto.Description, featureIds);
             await categoryRepository.InsertCategoryAsync(category, cancellationToken);
-            await unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync();
 
             return category.Id.Value;
         }
@@ -84,7 +84,7 @@ namespace DevTubeCommerce.Application.Services.Catalog
             category.Update(categoryId, categoryDto.CategoryName, categoryDto.IsActive,
                            categoryDto.Description, oldfeatureIds, currentFeatureIds);
 
-            await unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync();
         }
     }
 }

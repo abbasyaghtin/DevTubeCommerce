@@ -1,5 +1,7 @@
 ﻿using DevTubeCommerce.Domain.Core.Base;
 using DevTubeCommerce.Domain.Core.Shared;
+using DevTubeCommerce.Framework.Exceptions;
+using DevTubeCommerce.Framework.Global;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +19,25 @@ namespace DevTubeCommerce.Domain.Core.Catalogs.Products
         private readonly List<ProductFeatureValue> _productFeatureValues = new List<ProductFeatureValue>();
         public IReadOnlyList<ProductFeatureValue> ProductFeatureValues => _productFeatureValues;
 
-        internal static Product CreateNew(string title, string description, string code, double price, List<ProductFeatureValueData> productFeatures)
+        public static Product CreateNew(string title, string description, string code, double price, List<ProductFeatureValueData> productFeatures)
         {
-            return new Product(title, description, code, price, productFeatures);
+            var productId = new ProductId(Guid.NewGuid());
+            return new Product(productId, title, description, code, price, productFeatures);
+        }
+
+        public void Update(ProductId id, string title, string description, string code, double price,
+                    List<ProductFeatureValueData> oldProductFeatures, List<ProductFeatureValueData> currentProductFeatures)
+        {
+            if (price < 0) throw new BusinessRuleException(Error.InvalidPrice);
+            Id = id;
+            Title = title;
+            Code = code;
+            Description = description;
+            Price = price;
+            if (oldProductFeatures.Count > 0)
+                RemoveFeatures(oldProductFeatures);
+
+            BuildFeatures(currentProductFeatures);
         }
 
         private void BuildFeatures(List<ProductFeatureValueData> featureData)
@@ -30,10 +48,19 @@ namespace DevTubeCommerce.Domain.Core.Catalogs.Products
                 _productFeatureValues.Add(newFeature);
             });
         }
-
-        private Product(string title, string description, string code, double price, List<ProductFeatureValueData> productFeatures)
+        private void RemoveFeatures(List<ProductFeatureValueData> featureData)
         {
-            if (price < 0) throw new BusinessRuleException("invalid price value");
+            var productFeatureValues = _productFeatureValues.Where(f => featureData.Any(x=>x.FeatureId==f.FeatureId)).ToList();
+            productFeatureValues.ForEach(productFeature =>
+            {
+                _productFeatureValues.Remove(productFeature);
+            });
+        }
+
+        private Product(ProductId id,string title, string description, string code, double price, List<ProductFeatureValueData> productFeatures)
+        {
+            if (price < 0) throw new BusinessRuleException(Error.InvalidPrice);
+            Id = id;
             Title = title;
             Code = code;
             Description = description;

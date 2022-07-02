@@ -14,13 +14,15 @@ namespace DevTubeCommerce.Domain.Core.Catalogs.Products
         public FeatureId FeatureId { get; private set; }
         public string Value { get; private set; }
 
-        internal static ProductFeatureValue CreateNew(ProductId productId, FeatureId featureId, string value)
+        public static ProductFeatureValue CreateNew(ProductId productId, FeatureId featureId, string value)
         {
+           
             return new ProductFeatureValue(productId, featureId, value);
         }
 
         private ProductFeatureValue(ProductId productId, FeatureId featureId, string value)
         {
+            Id=Guid.NewGuid();
             ProductId = productId;
             FeatureId = featureId;
             Value = value;

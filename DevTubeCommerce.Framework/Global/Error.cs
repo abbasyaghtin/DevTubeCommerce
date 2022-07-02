@@ -54,5 +54,11 @@ namespace DevTubeCommerce.Framework.Global
             EnglishTitle = "Category Not Found!",
             PersianTitle = "کاتالوگ مورد نظر یافت نشد.",
         };
+        public static readonly Error ProductNotFound = new Error()
+        {
+            Id = 8,
+            EnglishTitle = "Product Not Found!",
+            PersianTitle = "محصول مورد نظر یافت نشد.",
+        };
     }
 }

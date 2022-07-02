@@ -20,7 +20,7 @@ namespace DevTubeCommerce.Infrastructure.Patterns
             context.Dispose();
         }
 
-        public async Task SaveChanges()
+        public async Task SaveChangesAsync()
         {
             await context.SaveChangesAsync();
         }
